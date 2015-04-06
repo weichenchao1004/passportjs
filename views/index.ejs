@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HAHA</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/index');
+    xhr.setRequestHeader('accept', 'application/json');
+    xhr.setRequestHeader('content-type', 'application/json');
+    xhr.addEventListener('readystatechange', function() {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            var obj = JSON.parse(xhr.responseText);
+            console.log(obj);
+            document.querySelector('.message').innerHTML = 'welcome: ' + obj.user.username;
+            if(obj){
+                document.querySelector('.register').style.display = 'none';
+            }
+        }
+    });
+
+    xhr.send();
+</script>
+<body>
+<div class="container">
+    <a href="/">Go home</a>
+    <a href="/login">Login</a>
+    <a href="/register" class="register">Register</a>
+
+</div>
+
+<div class="message"></div>
+</body>
+</html>

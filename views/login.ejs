@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HAHA</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded',function() {
+
+        document.querySelector('button').addEventListener('click',function(){
+            var username = document.querySelector('.username').value;
+            var password = document.querySelector('.password').value;
+            var jsonObj = {
+                username: username,
+                password: password
+            }
+            console.log(jsonObj);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/login');
+            xhr.setRequestHeader('accept', 'application/json');
+            xhr.setRequestHeader('content-type', 'application/json');
+            xhr.addEventListener('readystatechange', function() {
+                if(xhr.readyState === 4 && xhr.status === 200) {
+                    var obj = JSON.parse(xhr.responseText);
+                    console.log(obj);
+                    document.querySelector('.message').innerHTML = obj;
+                }
+            });
+
+            xhr.send(JSON.stringify(jsonObj));
+        })
+
+    })
+</script>
+<body>
+
+    <div>
+        <label>Username:</label>
+        <input  class="username" type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input  class="password" type="password" name="password"/>
+    </div>
+   <button>login in</button>
+   <div class="message"></div>
+
+
+</body>
+</html>
