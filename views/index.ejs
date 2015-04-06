@@ -16,6 +16,7 @@
             document.querySelector('.message').innerHTML = 'welcome: ' + obj.user.username;
             if(obj){
                 document.querySelector('.register').style.display = 'none';
+                document.querySelector('.logout').style.display = 'block';
             }
         }
     });
@@ -27,7 +28,7 @@
     <a href="/">Go home</a>
     <a href="/login">Login</a>
     <a href="/register" class="register">Register</a>
-
+    <a href="/logout" class="logout" style="display: none">logout</a>
 </div>
 
 <div class="message"></div>
