@@ -26,7 +26,7 @@
                    var obj = JSON.parse(xhr.responseText);
                    console.log(obj);
 
-                   document.querySelector('.content').innerHTML = 'username is ' + obj.user.username;
+                   document.querySelector('.content').innerHTML = 'You have successfully registered! username is ' + obj.user.username;
                }
            });
 
@@ -52,5 +52,6 @@
 
 <div class="content"></div>
 
+<a href="/">go back HOME</a>
 </body>
 </html>

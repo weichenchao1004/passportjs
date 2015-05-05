@@ -11,15 +11,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/index',function(req,res) {
-    if(req.user){
-        res.status(200).json({user:req.user});
-    }else{
-        res.status(500).json('not login in ');
-    }
-})
-
-
 
 router.get('/register', function(req, res) {
     res.render('register', {});
@@ -43,6 +34,17 @@ router.post('/register', function(req, res) {
     });
 });
 
+
+router.get('/validate', function (req, res) {
+    console.log('req.userrrrr ' + req.user);
+    if (req.user) {
+        res.status(200).json({user:req.user});
+    }
+    else {
+        res.render('index');
+    }
+});
+
 router.get('/login', function(req, res) {
     console.log(req.user);
     if(req.user) {
@@ -56,7 +58,7 @@ router.get('/login', function(req, res) {
 router.post('/login', passport.authenticate('local'), function(req, res) {
 
     if (req.user) {
-        res.status(200).json('User has login in!');
+        res.status(200).json('User ' + req.user.username + ' has login in!');
 
     } else {
         // json that user is not authenticated
